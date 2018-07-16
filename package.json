@@ -2,6 +2,7 @@
     "name": "open-related-file",
     "displayName": "Open Related File",
     "description": "Open a file that has a similar name to the currently opened file",
+    "icon": "icon.png",
     "repository": {
         "type": "git",
         "url": "https://github.com/bryanthomaschen/vscode-open-related-file.git"   
