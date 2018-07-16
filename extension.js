@@ -51,7 +51,8 @@ function activate(context) {
           vscode.workspace
             .openTextDocument(vscode.Uri.file(fullPath))
             .then(doc => {
-              vscode.window.showTextDocument(doc);
+              console.log(doc);
+              vscode.window.showTextDocument(doc, {preview: false});
             });
         });
       });
