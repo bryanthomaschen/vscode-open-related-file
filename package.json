@@ -29,7 +29,7 @@
         "commands": [
             {
                 "command": "extension.openRelatedFile",
-                "title": "Open files that have same names, but different extensions"
+                "title": "Open related files"
             }
         ]
     },
