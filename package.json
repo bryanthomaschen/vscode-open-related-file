@@ -11,14 +11,25 @@
         "Other"
     ],
     "activationEvents": [
-        "onCommand:extension.sayHello"
+        "onCommand:extension.openRelatedFile"
     ],
+    "configuration": {
+        "type": "object",
+        "title": "Open Related File Configuration",
+        "properties": {
+            "openRelatedFile.ignoreExt": {
+                "type": "array",
+                "default": [],
+                "description": "Array of file extensions to ignore when opening related files"
+            }
+        }
+    },
     "main": "./extension",
     "contributes": {
         "commands": [
             {
-                "command": "extension.sayHello",
-                "title": "Hello World"
+                "command": "extension.openRelatedFile",
+                "title": "Open files that have same names, but different extensions"
             }
         ]
     },

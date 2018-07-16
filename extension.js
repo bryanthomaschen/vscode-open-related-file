@@ -1,30 +1,67 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
-const vscode = require('vscode');
+const vscode = require("vscode");
+const path = require("path");
+const fs = require("fs");
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 function activate(context) {
+  let disposable = vscode.commands.registerCommand(
+    "extension.openRelatedFile",
+    function() {
+      let config = vscode.workspace.getConfiguration("openRelatedFile");
+      let ignoreExtArr = [...config.get("ignoreExt")];
 
-    // Use the console to output diagnostic information (console.log) and errors (console.error)
-    // This line of code will only be executed once when your extension is activated
-    console.log('Congratulations, your extension "open-related-file" is now active!');
+      // The code you place here will be executed every time your command is executed
+      let editor = vscode.window.activeTextEditor;
+      if (!editor) {
+        return;
+      }
 
-    // The command has been defined in the package.json file
-    // Now provide the implementation of the command with  registerCommand
-    // The commandId parameter must match the command field in package.json
-    let disposable = vscode.commands.registerCommand('extension.sayHello', function () {
-        // The code you place here will be executed every time your command is executed
+      let hasIgnoredExt = _fileName => {
+        return ignoreExtArr.some(ext => {
+          return _fileName.endsWith(ext);
+        });
+      };
 
-        // Display a message box to the user
-        vscode.window.showInformationMessage('Hello World!');
-    });
+      let baseName = _fileName => {
+        return _fileName.split(".")[0];
+      };
 
-    context.subscriptions.push(disposable);
+      let extName = _fileName => {
+        let [_first, ...rest] = _fileName.split(".");
+        return rest.join(".");
+      };
+
+      let currentFileName = path.basename(editor.document.fileName);
+      let currentFileDir = path.dirname(editor.document.fileName);
+
+      fs.readdir(currentFileDir, (err, files) => {
+        let relevantFiles = files.filter(file => {
+          return (
+            !hasIgnoredExt(file) &&
+            baseName(file) == baseName(currentFileName) &&
+            file != currentFileName
+          );
+        });
+
+        relevantFiles.forEach(file => {
+          let fullPath = [currentFileDir, file].join(path.sep);
+          vscode.workspace
+            .openTextDocument(vscode.Uri.file(fullPath))
+            .then(doc => {
+              vscode.window.showTextDocument(doc);
+            });
+        });
+      });
+    }
+  );
+
+  context.subscriptions.push(disposable);
 }
 exports.activate = activate;
 
 // this method is called when your extension is deactivated
-function deactivate() {
-}
+function deactivate() {}
 exports.deactivate = deactivate;
