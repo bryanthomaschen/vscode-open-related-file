@@ -11,7 +11,7 @@
         "Other"
     ],
     "activationEvents": [
-        "onCommand:extension.openRelatedFile"
+        "onCommand:openRelatedFile.open"
     ],
     "configuration": {
         "type": "object",
@@ -28,7 +28,7 @@
     "contributes": {
         "commands": [
             {
-                "command": "extension.openRelatedFile",
+                "command": "openRelatedFile.open",
                 "title": "Open related files"
             }
         ]

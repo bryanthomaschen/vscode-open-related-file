@@ -8,7 +8,7 @@ const fs = require("fs");
 // your extension is activated the very first time the command is executed
 function activate(context) {
   let disposable = vscode.commands.registerCommand(
-    "extension.openRelatedFile",
+    "openRelatedFile.open",
     function() {
       let config = vscode.workspace.getConfiguration("openRelatedFile");
       let ignoreExtArr = [...config.get("ignoreExt")];

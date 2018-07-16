@@ -15,9 +15,20 @@ workspace/
     └── ...
 ```
 
-Multiple the above by even a digit's worth of components and add VS Code's notorious file explorer issues like [this](https://github.com/Microsoft/vscode/issues/17777) and the amount of time spent looking for related files adds up.
+Multiply the above by even a digit's worth of components and add VS Code's notorious file explorer issues like [this](https://github.com/Microsoft/vscode/issues/17777) and the amount of time spent looking for related files adds up.
 
 ## Usage
+
+`Open related files` will appear in the Command Palette.
+
+![](https://raw.githubusercontent.com/bryanthomaschen/vscode-open-related-file/master/open-related-file-usecase.gif)
+
+You can add a custom keybinding as well:
+```
+  "key": "<some key binding>"
+  "command": "openRelatedFile.open",
+  "when": "editorTextFocus"
+```
 
 ## Configuration
 
