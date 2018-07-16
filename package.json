@@ -22,7 +22,7 @@
         "type": "object",
         "title": "Open Related Files Configuration",
         "properties": {
-            "openRelatedFile.ignoreExt": {
+            "openRelatedFiles.ignoreExt": {
                 "type": "array",
                 "default": [],
                 "description": "Array of file extensions to ignore when opening related files"
@@ -33,7 +33,7 @@
     "contributes": {
         "commands": [
             {
-                "command": "openRelatedFile.open",
+                "command": "openRelatedFiles.open",
                 "title": "Open related files"
             }
         ]

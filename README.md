@@ -26,7 +26,7 @@ Multiply the above by even a digit's worth of components and add VS Code's notor
 You can add a custom keybinding as well:
 ```
   "key": "<some key binding>"
-  "command": "openRelatedFile.open",
+  "command": "openRelatedFiles.open",
   "when": "editorTextFocus"
 ```
 
@@ -34,7 +34,7 @@ You can add a custom keybinding as well:
 
 Right now the only configuration option is to specify an array of file extensions to ignore when opening similarly named files.
 ```
-"openRelatedFile.ignoreExt" = [
+"openRelatedFiles.ignoreExt" = [
     ".bs.js",
     ".ignored_file_type",
     ...
