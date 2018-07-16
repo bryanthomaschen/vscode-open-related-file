@@ -1,7 +1,7 @@
 {
     "name": "open-related-file",
     "displayName": "Open Related Files",
-    "description": "Open filesthat have a similar name to the currently opened file",
+    "description": "Open files that have a similar name to the currently opened file",
     "icon": "icon.png",
     "repository": {
         "type": "git",
