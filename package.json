@@ -1,7 +1,7 @@
 {
     "name": "open-related-file",
-    "displayName": "Open Related File",
-    "description": "Open a file that has a similar name to the currently opened file",
+    "displayName": "Open Related Files",
+    "description": "Open filesthat have a similar name to the currently opened file",
     "icon": "icon.png",
     "repository": {
         "type": "git",
@@ -16,11 +16,11 @@
         "Other"
     ],
     "activationEvents": [
-        "onCommand:openRelatedFile.open"
+        "onCommand:openRelatedFiles.open"
     ],
     "configuration": {
         "type": "object",
-        "title": "Open Related File Configuration",
+        "title": "Open Related Files Configuration",
         "properties": {
             "openRelatedFile.ignoreExt": {
                 "type": "array",
