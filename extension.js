@@ -10,7 +10,7 @@ function activate(context) {
   let disposable = vscode.commands.registerCommand(
     "openRelatedFiles.open",
     function() {
-      let config = vscode.workspace.getConfiguration("openRelatedFile");
+      let config = vscode.workspace.getConfiguration("openRelatedFiles");
       let ignoreExtArr = [...config.get("ignoreExt")];
 
       // The code you place here will be executed every time your command is executed
