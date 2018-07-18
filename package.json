@@ -18,17 +18,6 @@
     "activationEvents": [
         "onCommand:openRelatedFiles.open"
     ],
-    "configuration": {
-        "type": "object",
-        "title": "Open Related Files Configuration",
-        "properties": {
-            "openRelatedFiles.ignoreExt": {
-                "type": "array",
-                "default": [],
-                "description": "Array of file extensions to ignore when opening related files"
-            }
-        }
-    },
     "main": "./extension",
     "contributes": {
         "commands": [
@@ -36,7 +25,18 @@
                 "command": "openRelatedFiles.open",
                 "title": "Open related files"
             }
-        ]
+        ],
+        "configuration": {
+            "type": "object",
+            "title": "Open Related Files Configuration",
+            "properties": {
+                "openRelatedFiles.ignoreExt": {
+                    "type": "array",
+                    "default": [],
+                    "description": "Array of file extensions to ignore when opening related files"
+                }
+            }
+        }
     },
     "scripts": {
         "postinstall": "node ./node_modules/vscode/bin/install",
