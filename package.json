@@ -16,7 +16,8 @@
         "Other"
     ],
     "activationEvents": [
-        "onCommand:openRelatedFiles.open"
+        "onCommand:openRelatedFiles.open",
+        "onCommand:openRelatedFiles.create"
     ],
     "main": "./extension",
     "contributes": {
@@ -24,6 +25,10 @@
             {
                 "command": "openRelatedFiles.open",
                 "title": "Open related files"
+            },
+            {
+                "command": "openRelatedFiles.create",
+                "title": "Create related files"
             }
         ],
         "configuration": {
@@ -34,6 +39,11 @@
                     "type": "array",
                     "default": [],
                     "description": "Array of file extensions to ignore when opening related files"
+                },
+                "openRelatedFiles.createFileMap": {
+                    "type": "object",
+                    "default": [],
+                    "description": "Object map with file extension as key and array of file extensions to create as value"
                 }
             }
         }
