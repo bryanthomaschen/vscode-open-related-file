@@ -13,9 +13,7 @@ function activate(context) {
   };
 
   let openFile = _fullPath => {
-    vscode.workspace
-    .openTextDocument(vscode.Uri.file(_fullPath))
-    .then(doc => {
+    vscode.workspace.openTextDocument(vscode.Uri.file(_fullPath)).then(doc => {
       console.log(doc);
       vscode.window.showTextDocument(doc, { preview: false });
     });
@@ -28,20 +26,22 @@ function activate(context) {
 
       /** @type {Array} */
       let ignoreExtArr = config.get("ignoreExt");
+      let fileExtMap = config.get("openFileMap");
 
       let editor = vscode.window.activeTextEditor;
       if (!editor) {
         return;
       }
 
-      let hasIgnoredExt = _fileName => {
+      let hasIgnoredExt = fileName => {
         return ignoreExtArr.some(ext => {
-          return _fileName.endsWith(ext);
+          return fileName.endsWith(ext);
         });
       };
 
       let currentFileName = path.basename(editor.document.fileName);
       let currentFileDir = path.dirname(editor.document.fileName);
+      let currentFileExt = "." + extName(currentFileName);
 
       fs.readdir(currentFileDir, (err, files) => {
         let relevantFiles = files.filter(file => {
@@ -52,9 +52,17 @@ function activate(context) {
           );
         });
 
-        relevantFiles.forEach(file => {
+        let otherInterestedFiles = fileExtMap.hasOwnProperty(currentFileExt)
+          ? fileExtMap[currentFileExt].map(ext => {
+              return baseName(currentFileName) + ext;
+            })
+          : [];
+
+        let allFiles = relevantFiles.concat(otherInterestedFiles);
+
+        allFiles.forEach(file => {
           let fullPath = [currentFileDir, file].join(path.sep);
-          openFile(fullPath);
+          if (fs.existsSync(fullPath)) openFile(fullPath);
         });
       });
     }
@@ -84,9 +92,11 @@ function activate(context) {
 
         interestedFiles.forEach(file => {
           let fullPath = [currentFileDir, file].join(path.sep);
-          fs.open(fullPath, 'wx', (err, fd) => {
+          fs.open(fullPath, "wx", (err, fd) => {
             if (!err) {
-              fs.close(fd, err => { if (err) throw err; });
+              fs.close(fd, err => {
+                if (err) throw err;
+              });
             }
             openFile(fullPath);
           });

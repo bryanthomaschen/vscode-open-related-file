@@ -7,10 +7,10 @@
         "type": "git",
         "url": "https://github.com/bryanthomaschen/vscode-open-related-file.git"
     },
-    "version": "1.0.1",
+    "version": "1.0.2",
     "publisher": "bryanthomaschen",
     "engines": {
-        "vscode": "^1.25.0"
+        "vscode": "^1.34.0"
     },
     "categories": [
         "Other"
@@ -40,23 +40,26 @@
                     "default": [],
                     "description": "Array of file extensions to ignore when opening related files"
                 },
+                "openRelatedFiles.openFileMap": {
+                    "type": "object",
+                    "default": [],
+                    "description": "AObject map with file extension as key and array of file suffix to open as value"
+                },
                 "openRelatedFiles.createFileMap": {
                     "type": "object",
                     "default": [],
-                    "description": "Object map with file extension as key and array of file extensions to create as value"
+                    "description": "Object map with file extension as key and array of file suffix to create as value"
                 }
             }
         }
     },
     "scripts": {
-        "postinstall": "node ./node_modules/vscode/bin/install",
-        "test": "node ./node_modules/vscode/bin/test"
+        "vscode:prepublish": "npm run compile"
     },
     "devDependencies": {
-        "typescript": "^2.6.1",
-        "vscode": "^1.1.6",
-        "eslint": "^4.11.0",
-        "@types/node": "^7.0.43",
-        "@types/mocha": "^2.2.42"
+        "@types/node": "^10.14.17",
+        "@types/vscode": "^1.34.0",
+        "tslint": "^5.16.0",
+        "typescript": "^3.5.1"
     }
 }
