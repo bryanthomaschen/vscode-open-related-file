@@ -7,7 +7,7 @@
         "type": "git",
         "url": "https://github.com/bryanthomaschen/vscode-open-related-file.git"
     },
-    "version": "1.0.2",
+    "version": "1.1.0",
     "publisher": "bryanthomaschen",
     "engines": {
         "vscode": "^1.34.0"
@@ -53,8 +53,7 @@
             }
         }
     },
-    "scripts": {
-    },
+    "scripts": {},
     "devDependencies": {
         "@types/node": "^10.14.17",
         "@types/vscode": "^1.34.0",
